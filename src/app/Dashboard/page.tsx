@@ -29,16 +29,6 @@ export default function Dashboard() {
   const Router = useRouter();
   const dispatch = useDispatch();
 
-  useEffect(() => {
-    const user: userData | null = JSON.parse(localStorage.getItem('user') || '{}');
-    if (!Cookies.get('token') || user?.role !== 'admin' || user?.email !== 'mrmoiz.dev@gmail.com') {
-      Router.push('/')
-    }
-    dispatch(setNavActive('Base'))
-  }, [dispatch, Cookies, Router])
-
-
-
   const { data: categoryData, isLoading: categoryLoading } = useSWR('/gettingAllCategoriesFOrAdmin', get_all_categories)
   if (categoryData?.success !== true) toast.error(categoryData?.message)
   const { data: productData, isLoading: productLoading } = useSWR('/gettingAllProductsFOrAdmin', get_all_products)
@@ -46,7 +36,6 @@ export default function Dashboard() {
   const {data : orderData, isLoading : orderLoading} = useSWR('/gettingAllOrdersForAdmin', get_all_orders)
   if (orderData?.success !== true) toast.error(orderData?.message)
 
-  console.log(orderData?.data)
   useEffect(() => {
     dispatch(setCategoryData(categoryData?.data))
     dispatch(setCatLoading(categoryLoading))
@@ -55,8 +44,6 @@ export default function Dashboard() {
     dispatch(setOrderData(orderData?.data))
     dispatch(setCatLoading(orderLoading))
   }, [categoryData, dispatch, categoryLoading, productData, productLoading , orderData , orderLoading])
-
-
 
   return (
     <div className='w-full h-screen flex  bg-gray-50 overflow-hidden'>
