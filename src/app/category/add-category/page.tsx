@@ -75,6 +75,28 @@ interface userData {
   }
   
 
+  function fileToBase64(file: File): Promise<string> {
+  return new Promise((resolve, reject) => {
+    const reader = new FileReader();
+
+    // When reading is successful
+    reader.onload = () => {
+      if (typeof reader.result === "string") {
+        resolve(reader.result);
+      } else {
+        reject(new Error("File could not be converted to base64 string."));
+      }
+    };
+
+    // When reading fails
+    reader.onerror = (error) => reject(error);
+
+    // Read file as Data URL (Base64)
+    reader.readAsDataURL(file);
+  });
+}
+
+
 export default function AddCategory() {
 
     const [loader, setLoader] = useState(false)
@@ -102,7 +124,7 @@ export default function AddCategory() {
         setLoader(true)
         const CheckFileSize = maxSize(data.image[0]);
         if (CheckFileSize) return toast.error('Image size must be less then 1MB')
-        const uploadImageToFirebase = await uploadImages(data.image[0]);
+        const uploadImageToFirebase = await fileToBase64(data.image[0]);
         // const uploadImageToFirebase = 'https://firebasestorage.googleapis.com/v0/b/socialapp-9b83f.appspot.com/o/ecommerce%2Fcategory%2Fimages131.jpg-1683339363348-c4vcab?alt=media&token=f9303ff9-7d34-4514-a53f-832f72814337';
 
         const finalData = { categoryName: data.name, categoryDescription: data.description, categoryImage: uploadImageToFirebase, categorySlug: data.slug }
