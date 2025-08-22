@@ -162,6 +162,11 @@ export default function Page() {
 
     const totalPrice = calculateTotalPrice(cartData as Data[])
 
+    const handleOrderClick = () => {
+    // Redirect to eSewa payment gateway
+    window.location.href = "https://rc-epay.esewa.com.np/api/epay/main/v2/form";
+};
+
     return (
         <div className='w-full h-full bg-gray-50 px-2'>
             <div className="text-sm breadcrumbs  border-b-2 border-b-orange-600">
@@ -272,7 +277,15 @@ export default function Page() {
 
                             </div>
 
-                            <button className='btn btn-block mt-3'>Order !</button>
+<button 
+    type="button" 
+    className='btn btn-block mt-3' 
+    onClick={handleOrderClick}
+>
+    Order !
+</button>
+
+                            
 
                         </form >
 
