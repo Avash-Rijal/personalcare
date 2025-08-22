@@ -73,10 +73,6 @@ export default function Page() {
         dispatch(setNavActive('Base'))
     }, [dispatch, Router])
 
-    useEffect(() => {
-        toast.warning("This is Dummy Website Don't add your Origial Details Here !")
-    }, [])
-
    
   
 
@@ -213,7 +209,7 @@ export default function Page() {
                                     cartData?.length === 0 ?
                                         <div className='w-full h-full flex items-center justify-center flex-col'>
                                             <p className='my-4 mx-2 text-lg font-semibold '>No Item Available in Cart</p>
-                                            <Link href={"/"} className='btn text-white'>Shop Now</Link>
+                                            <Link href={"/"} className='btn text-black'>Shop Now</Link>
                                         </div>
                                         :
                                         cartData?.map((item: Data) => {
@@ -227,12 +223,12 @@ export default function Page() {
                                 }
                             </div>
                             <div className='w-full  py-2 my-2 flex justify-end '>
-                                <h1 className='py-2 tracking-widest mb-2  border-b px-6 border-orange-600 text-sm  flex flex-col '>  Original Price  <span className='text-xl font-extrabold'>Rs {totalPrice || 0}</span> </h1>
-                                <h1 className='py-2 tracking-widest mb-2  border-b px-6 border-orange-600 text-sm  flex flex-col '>  Shipping Price  <span className='text-xl font-extrabold'>Rs {500}</span> </h1>
-                                <h1 className='py-2 tracking-widest mb-2  border-b px-6 border-orange-600 text-sm  flex flex-col '>  tax Price  <span className='text-xl font-extrabold'>Rs {100}</span> </h1>
+                                <h1 className='py-2 tracking-widest mb-2  border-b px-6 border-orange-600 text-sm  flex flex-col text-black'>  Original Price  <span className='text-xl font-extrabold'>Rs {totalPrice || 0}</span> </h1>
+                                <h1 className='py-2 tracking-widest mb-2  border-b px-6 border-orange-600 text-sm  flex flex-col text-black'>  Shipping Price  <span className='text-xl font-extrabold'>Rs {50}</span> </h1>
+                                <h1 className='py-2 tracking-widest mb-2  border-b px-6 border-orange-600 text-sm  flex flex-col text-black'>  Tax Price  <span className='text-xl font-extrabold'>Rs {0}</span> </h1>
                             </div>
                             <div className='w-full  py-2 my-2 flex justify-end '>
-                                <h1 className='py-2 tracking-widest mb-2  border-b px-6 border-orange-600 text-sm  flex flex-col '>  Total Order Price  <span className='text-xl font-extrabold'>Rs {totalPrice + 600}</span> </h1>
+                                <h1 className='py-2 tracking-widest mb-2  border-b px-6 border-orange-600 text-sm  flex flex-col text-black'>  Total Order Price  <span className='text-xl font-extrabold'>Rs {totalPrice + 50}</span> </h1>
                             </div>
                         </div>
 
